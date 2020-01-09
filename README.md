@@ -1,12 +1,36 @@
 # hadoop-training
 一个大数据的例子-Hadoop实现 （简书链接：https://www.jianshu.com/p/8d9efad41053）
 
+## 数据
+### 原始数据
+![原始数据](images/data.png)
+### 数据说明
+    数据按照逗号（,）分割，每列数据说明如下：
+    
+
+| 序号 | 说明 | 备注 |
+| --- | --- | --- |
+| 1 | 学号 |  |
+| 2 | 姓名 |  |
+| 3 | 性别 |  |
+| 4 | 年龄 |  |
+| 5 | 上学期成绩 | 学科成绩以&分割，学科=成绩 |
+| 6 | 下学期成绩 | 学科成绩以&分割，学科=成绩 |
+
+## 需求
+    统计第一学期数学成绩及格和不及格的人数
+    
+## 解决方案
+    数据结构相对比较简单，分析每行数据中的第一学期数学成绩，判断其中数据成绩是否及格，如果及格，则统计及格的人数，不及格统计不及格的人数。
+## 1.使用MapReduce解决
+
 MapReduce的思路就是将所需要进行计算的数据，拆分到不同的机器上，然后再不同的机器上计算，将不同机器上的结果汇总到一起，然后再进行计算。再不同机器上进行计算的过程，通常称为Map阶段，汇总结果进行计算的过程，通常称为Reduce阶段。
 
     结合MapReduce计算的基本思路:MapReduce实现一个任务主要分为Map和reduce两部分。
-    在实现的过程中，主要完成Map和Reduce的实现过程即可。当然，一个MapReduce的任务，必须要有一个驱动主类将Map和Reduce调起方能执行。
+    在实现的过程中，主要完成Map和Reduce的实现过程即可。
+    当然，一个MapReduce的任务，必须要有一个驱动主类将Map和Reduce调起方能执行。
  
- #### 1.1 Map
+#### 1.1 Map
 新建StudentScoreMapper，需要继承org.apache.hadoop.mapreduce.Mapper，并指定Map的输入输出类型，共有四个参数，前两个为输入数据类型，后两个为输出数据类型
 ```
     public class StudentScoreMapper extends Mapper<Object,Text, Text, IntWritable>
@@ -43,7 +67,7 @@ protected void map(Object key, Text value, Context context) throws IOException, 
 ```
 
 
- #### 1.2 Reduce
+#### 1.2 Reduce
 新建StudentScoreReducer类，继承org.apache.hadoop.mapreduce.Reducer，同时指定Reduce的输入和输出类型，其中输入类型与Map的输出类型保持一致。
 
 ```
