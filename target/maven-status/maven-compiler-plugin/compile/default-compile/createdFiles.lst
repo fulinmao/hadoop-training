@@ -1,8 +1,0 @@
-com\hadoop\mapreduce\WordCountMapper.class
-com\hadoop\mapreduce\WordCountReducer.class
-com\hadoop\mapreduce\StudentScoreMapper.class
-com\hadoop\hdfs\HDFSUtils.class
-com\hadoop\mapreduce\StudentScoreReducer.class
-com\hadoop\mapreduce\WordCountMain.class
-com\hadoop\mapreduce\StudentScoreMain.class
-com\hadoop\mapreduce\WordCountPartitioner.class
