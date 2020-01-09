@@ -3,7 +3,8 @@
 
 MapReduce的思路就是将所需要进行计算的数据，拆分到不同的机器上，然后再不同的机器上计算，将不同机器上的结果汇总到一起，然后再进行计算。再不同机器上进行计算的过程，通常称为Map阶段，汇总结果进行计算的过程，通常称为Reduce阶段。
 
-    结合MapReduce计算的基本思路，MapReduce实现一个任务主要分为Map和reduce两部分。再实现的过程中，主要完成Map和Reduce的实现过程即可。当然，一个MapReduce的任务，必须要有一个驱动主类将Map和Reduce调起方能执行。
+    结合MapReduce计算的基本思路:MapReduce实现一个任务主要分为Map和reduce两部分。
+    在实现的过程中，主要完成Map和Reduce的实现过程即可。当然，一个MapReduce的任务，必须要有一个驱动主类将Map和Reduce调起方能执行。
  
  #### 1.1 Map
 新建StudentScoreMapper，需要继承org.apache.hadoop.mapreduce.Mapper，并指定Map的输入输出类型，共有四个参数，前两个为输入数据类型，后两个为输出数据类型
@@ -102,14 +103,18 @@ IOException, ClassNotFoundException, InterruptedException {
 #### 1.4 执行
 将编写的代码进行打包，发送到hadoop的集群，提交MapReduce任务
 ```
-hadoop jar hadoop-training-1.0-SNAPSHOT.jar com.hadoop.mapreduce.StudentScoreMain /data/student /data/studentscore/
+hadoop jar hadoop-training-1.0-SNAPSHOT.jar \
+com.hadoop.mapreduce.StudentScoreMain \
+/data/student /data/studentscore/
 ```
 其中，/data/student为任务所需要处理的路径，/data/studentscore/ 为最终结果输出路径，需要保证这个文件在HDFS上不存在。
 
 查看输出文件夹下的文件，其中，以part开始的文件为最终的数据结果
+
 ![结果文件目录](images/resultDir.png)
 
 查看任务执行结果
+
 ![任务执行结果](images/result.png)
 
 查看任务的基本信息，执行实践为20sec
